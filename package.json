@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "web-backend",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -7,7 +7,7 @@
     "start:dev": "NODE_ENV=development ts-node-dev --poll -r tsconfig-paths/register src/app.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "zidniiman-08",
   "license": "ISC",
   "description": "",
   "dependencies": {
