@@ -7,7 +7,7 @@
     "start:dev": "NODE_ENV=development ts-node-dev --poll -r tsconfig-paths/register src/app.ts"
   },
   "keywords": [],
-  "author": "zidniiman-08",
+  "author": "https://github.com/zidniilman-08",
   "license": "ISC",
   "description": "",
   "dependencies": {
