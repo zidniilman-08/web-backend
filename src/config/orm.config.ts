@@ -1,37 +1,33 @@
-import dotenv from 'dotenv';
-import path from 'path';
+import { DataSourceOptions } from 'typeorm';
+import { DB_ENV } from './env.config';
 
-dotenv.config({
-  path:
-    process.env.NODE_ENV === 'development'
-      ? path.resolve(process.cwd(), '.env.local')
-      : path.resolve(process.cwd(), '.env'),
-});
+interface IOrmConfig {
+  postgres: DataSourceOptions;
+  mysql: DataSourceOptions;
+}
 
 const ormParameters = {
-  synchronize: process.env.ORM_SYNCHRONIZE,
-  logging: process.env.ORM_LOGGING,
+  synchronize: DB_ENV.ORM_SYNCHRONIZE === 'true',
+  logging: DB_ENV.ORM_LOGGING === 'true',
 };
 
-export const ORM_CONFIG = {
-  postgre: {
-    type: 'postgre',
-    host: process.env.DB_POSTGRE_HOST,
-    port: Number(process.env.DB_POSTGRE_PORT),
-    username: process.env.DB_POSTGRE_USER,
-    password: process.env.DB_POSTGRE_PASSWORD,
-    database: process.env.DB_POSTGRE_NAME,
+export const ORM_CONFIG: IOrmConfig = {
+  postgres: {
+    type: 'postgres',
+    host: DB_ENV.POSTGRES.HOST,
+    port: Number(DB_ENV.POSTGRES.PORT),
+    username: DB_ENV.POSTGRES.USER,
+    password: DB_ENV.POSTGRES.PASS,
+    database: DB_ENV.POSTGRES.NAME,
     ...ormParameters,
   },
   mysql: {
     type: 'mysql',
-    host: process.env.DB_MYSQL_HOST,
-    port: Number(process.env.DB_MYSQL_PORT),
-    username: process.env.DB_MYSQL_USER,
-    password: process.env.DB_MYSQL_PASSWORD,
-    database: process.env.DB_MYSQL_NAME,
-    synchronize: process.env.ORM_SYNCHRONIZE,
-    logging: process.env.ORM_LOGGING,
+    host: DB_ENV.MYSQL.HOST,
+    port: Number(DB_ENV.MYSQL.PORT),
+    username: DB_ENV.MYSQL.USER,
+    password: DB_ENV.MYSQL.PASS,
+    database: DB_ENV.MYSQL.NAME,
     ...ormParameters,
   },
   // another database
