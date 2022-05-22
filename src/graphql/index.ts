@@ -9,11 +9,12 @@ import { WebSocketServer } from 'ws';
 import { useServer } from 'graphql-ws/lib/use/ws';
 
 import resolvers from '@/resolvers';
+import { ENV } from '@/config/env.config';
 
 export async function graphqlConfig({ httpServer }) {
   const wsServer = new WebSocketServer({
     server: httpServer,
-    path: '/graphql-subscriptions',
+    path: ENV.GRAPHQL_SUBSCRIPTION_PATH,
   });
 
   const schema = await buildSchema({
